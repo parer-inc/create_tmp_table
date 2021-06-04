@@ -14,9 +14,11 @@ def create_tmp_table(name):
         # log that name was wrong
         return False
     try:
-        cursor.execute(f"""CREATE TABLE '{name}'
-                        'id' int AUTO_INCREMENT,
-                        'data' varchar(50),
+        cursor.execute(f"""CREATE TABLE `{name}`(
+                        `id` int AUTO_INCREMENT,
+                        `data` varchar(50),
+                        primary key (id)
+                        )
                        """)
     except MySQLdb.Error as error:
         print(error)
