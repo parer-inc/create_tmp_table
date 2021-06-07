@@ -22,7 +22,6 @@ def create_tmp_table(name):
                        """)
     except MySQLdb.Error as error:
         print(error)
-        sys.exit("Error:Failed to create new tmp table")
     db.commit()
     cursor.close()
     return True
