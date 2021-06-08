@@ -10,6 +10,9 @@ from methods.connection import get_redis, get_cursor
 def create_tmp_table(name):
     """Create new tmp table"""
     cursor, db = get_cursor()
+    if not cursor or not db:
+        # log that failed getting cursor
+        return False
     if "tmp" not in name:
         # log that name was wrong
         return False
@@ -22,6 +25,8 @@ def create_tmp_table(name):
                        """)
     except MySQLdb.Error as error:
         print(error)
+        # Log
+        return False
     db.commit()
     cursor.close()
     return True
